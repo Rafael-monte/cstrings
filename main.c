@@ -15,9 +15,9 @@ int main(void)
     // str = concat(str, " Na verdade eu sou um homem simples, se eu vejo uma string, eu concateno!");
     // printf("%s\n", str->text);
 
-    // printf("Indice do caractere 'd' na string anterior: %d\n", index_of(str, 'd'));
+    // printf("Indice do caractere 'd' na string anterior: %d\n", index_of_char(str, 'd'));
 
-    // printf("Ultimo indice da letra 'o' na string %s: %d\n", str->text, last_index_of(str, 'o'));
+    // printf("Ultimo indice da letra 'o' na string %s: %d\n", str->text, last_index_of_char(str, 'o'));
 
     // printf("Vou fechar a string\n");
 
@@ -27,7 +27,12 @@ int main(void)
 
 
     string* nova_string = new_string("Esse e um teste de estrutura, eu gosto de usar virgulas, porem ainda e um teste");
-
+    printf("Vou deixar em uppercase: ");
+    nova_string = to_upper_case(nova_string);
+    printf("%s\n", nova_string->text);
+    printf("E lower case? Tami: ");
+    nova_string = to_lower_case(nova_string);
+    printf("%s\n", nova_string->text);
     string_list* lista_strings = split(nova_string, ",");
     string_list* pivot=lista_strings;
      while(pivot->text != NULL)
@@ -35,4 +40,6 @@ int main(void)
          printf("String atual: %s\n", pivot->text);
          pivot = pivot->next_string;
      }
+
+     
 }

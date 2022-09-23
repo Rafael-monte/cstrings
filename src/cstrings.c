@@ -8,7 +8,7 @@ typedef struct string string;
 
 typedef struct string_list string_list;
 
-int index_of(struct string* str, char value)
+int index_of_char(struct string* str, char value)
 {
     int index = -1;
     for (int i = 0; i < strlen(str->text); i++)
@@ -23,7 +23,7 @@ int index_of(struct string* str, char value)
     return index;
 }
 
-int last_index_of(struct string* str, char value)
+int last_index_of_char(struct string* str, char value)
 {
     int index = -1;
     for (int i = 0; i < strlen(str->text); i++)
@@ -76,17 +76,13 @@ struct string* concat(struct string* str, char* _value_to_concat)
     return str;
 }
 
-
-//Esse é um teste de estrutura, eu gosto de usar virgulas, porém ainda é um teste
+//Separa uma string em uma lista encadeada de substrings de acordo com um separador
+//Parâmetro: str - string que se deseja separar
+//Parâmetro: _separator - Separador que servirá de base para dividir a string
 struct string_list* split(struct string* str, char* _separator)
 {
     string_list* list = malloc(sizeof(struct string_list));
     string_list* pivot = list;
-    //int substrings = __count_occurrences(str->text, _separator);
-    printf("_______SPLIT__________\n");
-    //printf("Numero de ocorrencias: %d\n", substrings);
-    printf("String: %s (%d)\n", str->text, strlen(str->text));
-    printf("Separador: %s\n", _separator);
     char char_arr[strlen(str->text)+1];
     strcpy(char_arr, str->text);
     char* token = strtok(char_arr, _separator);
@@ -106,6 +102,29 @@ struct string_list* split(struct string* str, char* _separator)
     return list;
 }
 
+
+struct string* to_upper_case(struct string* str)
+{
+    for (int i = 0; i < strlen(str->text); i++)
+    {
+        if(str->text[i] >= 'a' && str->text[i] <= 'z') {
+            str->text[i] -= 32; 
+        }
+    }
+    return str;
+}
+
+struct string* to_lower_case(struct string* str)
+{
+    for (int i = 0; i < strlen(str->text); i++)
+    {
+        if (str->text[i] >= 'A' && str->text[i] <= 'Z')
+        {
+            str->text[i] += 32;
+        }
+    }
+    return str;
+}
 
 int __count_occurrences(char* str_text, char _character)
 {
